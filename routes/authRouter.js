@@ -5,7 +5,7 @@ var config = require('../config.js');
 var request = require('superagent');
 
 authRouter.get('/instagram', function(req, res, next) {
-  window.open('https://api.instagram.com/oauth/authorize/?client_id='+ config.InstaClientID +'&redirect_uri='+ config.callback_url +'&response_type=code');
+  res.redirect('https://api.instagram.com/oauth/authorize/?client_id='+ config.InstaClientID +'&redirect_uri='+ config.callback_url +'&response_type=code');
   // if ('OPTIONS' == req.method) {
   //   res.send(200);
   // } else {
@@ -28,7 +28,7 @@ authRouter.get('/instagram/callback', function(req, res) {
   .end(function(err, instaReq) {
     var access_token = instaReq.body.access_token;
     instagram.getMyInstaData(access_token, function(profile) {
-      res.json(JSON.stringify(profile));
+      res.jsons(JSON.stringify(profile));
     });
   });
 
