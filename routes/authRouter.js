@@ -28,7 +28,7 @@ authRouter.get('/instagram/callback', function(req, res) {
   .end(function(err, instaReq) {
     var access_token = instaReq.body.access_token;
     instagram.getMyInstaData(access_token, function(profile) {
-      res.send(JSON.stringify(profile));
+      res.json(JSON.stringify(profile));
     });
   });
 
