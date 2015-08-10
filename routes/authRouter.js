@@ -5,13 +5,15 @@ var config = require('../config.js');
 var request = require('superagent');
 
 authRouter.get('/instagram', function(req, res) {
+  res.header('Access-Control-Allow-Credentials', true);
   res.redirect('https://api.instagram.com/oauth/authorize/?client_id='+ config.InstaClientID +'&redirect_uri='+ config.callback_url +'&response_type=code');
 });
 
 authRouter.get('/instagram/callback', function(req, res) {
   var code = req.query.code;
-
+  res.header('Access-Control-Allow-Credentials', true);
   request.post('https://api.instagram.com/oauth/access_token')
+  .withCredentials()
   .send('client_id=' + config.InstaClientID)
   .send('client_secret=' + config.InstaClientSecret)
   .send('grant_type=' + 'authorization_code')
@@ -20,7 +22,7 @@ authRouter.get('/instagram/callback', function(req, res) {
   .end(function(err, instaReq) {
     var access_token = instaReq.body.access_token;
     instagram.getMyInstaData(access_token, function(profile) {
-      res.send(JSON.stringify(profile.data));
+      res.send(JSON.stringify(profile));
     });
   });
 

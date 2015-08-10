@@ -303,7 +303,7 @@ angular.module('instatrip.services', [])
 
     function ourCallback(routes, coords){
       return getPhoto({coords: coords});
-    };
+    }
   };
 
   // sends a request to apiServer for a redirect link
@@ -313,7 +313,9 @@ angular.module('instatrip.services', [])
   //     var linkHolder = {};
   return $http({
     method: 'GET',
+    dataType: 'jsonp',
     url: '/auth/instagram',
+    withCredentials: true,
     headers: {
       'Content-Type': 'application/json'
     }
