@@ -6,17 +6,17 @@ var request = require('superagent');
 
 authRouter.get('/instagram', function(req, res, next) {
   res.redirect('https://api.instagram.com/oauth/authorize/?client_id='+ config.InstaClientID +'&redirect_uri='+ config.callback_url +'&response_type=code');
-  if ('OPTIONS' == req.method) {
-    res.send(200);
-  } else {
-    next();
-  }
+  // if ('OPTIONS' == req.method) {
+  //   res.send(200);
+  // } else {
+  //   next();
+  // }
 });
 
 authRouter.get('/instagram/callback', function(req, res) {
   var code = req.query.code;
-  res.header('Access-Control-Allow-Credentials', true);
-  res.header('Access-Control-Allow-Origin', 'http://vizitrip.herokuapp.com');
+  // res.header('Access-Control-Allow-Credentials', true);
+  // res.header('Access-Control-Allow-Origin', 'http://vizitrip.herokuapp.com');
 
   request.post('https://api.instagram.com/oauth/access_token')
   .withCredentials()
