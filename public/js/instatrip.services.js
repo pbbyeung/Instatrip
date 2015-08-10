@@ -1,5 +1,9 @@
 angular.module('instatrip.services', [])
 
+.config(['$httpProvider', function($httpProvider) {
+  $httpProvider.defaults.withCredentials = true;
+}])
+
 .factory('Getdata', function ($http, $state, CustomOverlay, $rootScope) {
   var currentImages = [];
   var currentCoords = [];
