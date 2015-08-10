@@ -1,3 +1,5 @@
+var config = require('../config.js');
+
 angular.module('instatrip.services', [])
 
 .factory('Getdata', function ($http, $state, CustomOverlay, $rootScope) {
@@ -311,24 +313,29 @@ angular.module('instatrip.services', [])
     console.log("getlogin");
   //     var imgHolder = [];
   //     var linkHolder = {};
-  return $http({
-    method: 'GET',
-    dataType: 'jsonp',
-    url: '/auth/instagram',
-    withCredentials: true,
-    headers: {
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Credentials' : true,
-      'Access-Control-Allow-Origin': 'http://vizitrip.herokuapp.com',
-      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-      "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Authorization"
-    }
-
-  }).success(function(data) {
-    // console.log('about to auth ', data);
-  }).error(function() {
-    console.log('no auth');
+  $http.get('https://api.instagram.com/oauth/authorize/?client_id='+ config.InstaClientID +'&redirect_uri='+ config.callback_url +'&response_type=code')
+  .success(function() {
+    console.log('success');
   });
+  // return $http({
+  //   method: 'GET',
+
+  //   dataType: 'jsonp',
+  //   url: '/auth/instagram',
+  //   withCredentials: true,
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //     'Access-Control-Allow-Credentials' : true,
+  //     'Access-Control-Allow-Origin': 'http://vizitrip.herokuapp.com',
+  //     "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+  //     "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+  //   }
+
+  // }).success(function(data) {
+  //   // console.log('about to auth ', data);
+  // }).error(function() {
+  //   console.log('no auth');
+  // });
     // return $http({
     //   method: 'GET',
     //   url: '/users/????/media/recent'
