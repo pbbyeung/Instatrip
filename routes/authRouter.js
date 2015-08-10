@@ -6,6 +6,7 @@ var request = require('superagent');
 
 authRouter.get('/instagram', function(req, res) {
   res.header('Access-Control-Allow-Credentials', true);
+  res.header('Access-Control-Allow-Origin', true);
   res.redirect('https://api.instagram.com/oauth/authorize/?client_id='+ config.InstaClientID +'&redirect_uri='+ config.callback_url +'&response_type=code');
 });
 
