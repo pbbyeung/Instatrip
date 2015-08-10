@@ -322,8 +322,13 @@ angular.module('instatrip.services', [])
     url: '/auth/instagram',
     withCredentials: true,
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Credentials' : true,
+      'Access-Control-Allow-Origin': 'http://vizitrip.herokuapp.com',
+      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+      "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Authorization"
     }
+
   }).success(function(data) {
     // console.log('about to auth ', data);
   }).error(function() {

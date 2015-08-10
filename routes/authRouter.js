@@ -5,10 +5,6 @@ var config = require('../config.js');
 var request = require('superagent');
 
 authRouter.get('/instagram', function(req, res, next) {
-  res.header('Access-Control-Allow-Credentials', true);
-  res.header('Access-Control-Allow-Origin', 'http://vizitrip.herokuapp.com');
-  res.header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
-  res.header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept, Authorization");
   res.redirect('https://api.instagram.com/oauth/authorize/?client_id='+ config.InstaClientID +'&redirect_uri='+ config.callback_url +'&response_type=code');
   if ('OPTIONS' == req.method) {
     res.send(200);
