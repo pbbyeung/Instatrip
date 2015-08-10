@@ -1,5 +1,3 @@
-var config = require('../config.js');
-
 angular.module('instatrip.services', [])
 
 .factory('Getdata', function ($http, $state, CustomOverlay, $rootScope) {
