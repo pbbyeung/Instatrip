@@ -235,8 +235,8 @@ angular.module('instatrip.services', [])
           var spaced = [];
           for(var j = 0; j < newPoints.length; j++){
             spaced.push({
-              lat: newPoints[j].G,
-              lng: newPoints[j].K
+              lat: newPoints[j].A,
+              lng: newPoints[j].F
             });
           }
           ourCallback([], spaced).then(function (data, err) {
